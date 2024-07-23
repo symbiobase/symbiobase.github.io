@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Collections by host species</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4.9000/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="symbiobase.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img id="logo" style="width: 140px;" src="images/headerlogo.png" />     </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-layer-group"></span>
+     
+    Collections
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="symbioDatabase.html">Collections database</a>
+    </li>
+    <li>
+      <a href="collections-statistics.html">Collection statistics</a>
+    </li>
+    <li>
+      <a href="collections-family.html">- visualise by family</a>
+    </li>
+    <li>
+      <a href="collections-species.html">- visualise by species</a>
+    </li>
+    <li>
+      <a href="collections-latitude.html">- visualise by latitude</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="symbioMap.html">
+    <span class="fa fa-globe"></span>
+     
+    SymbioMap
+  </a>
+</li>
+<li>
+  <a href="symbioR.html">
+    <span class="fa fa-pie-chart"></span>
+     
+    SymbioR
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-sitemap"></span>
+     
+    Network
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="collaboraotrs.html">
+        <span class="fa fa-address-book"></span>
+         
+        Collaborators
+      </a>
+    </li>
+    <li>
+      <a href="funding.html">
+        <span class="fa fa-hashtag"></span>
+         
+        Funding
+      </a>
+    </li>
+    <li>
+      <a href="collaborators.html">
+        <span class="fa fa-file"></span>
+         
+        Publications
+      </a>
+    </li>
+    <li>
+      <a href="contacts.html">
+        <span class="fa fa-address-book"></span>
+         
+        Contact
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/symbiobase/">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Collections by host species</h1>
+
+</div>
+
+
+<p>The collection by numbers (01/01/2024):</p>
+<ul>
+<li>4143 samples</li>
+<li>54 host families</li>
+<li>279 host species</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(janitor)
+library(ggplot2)
+library(plotly)
+
+collections &lt;- readxl::read_excel(&quot;/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx&quot;) |&gt;
+  clean_names() |&gt;
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |&gt; 
+  mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |&gt; 
+  mutate(location = gsub(&quot;_&quot;, &quot; &quot;, location),
+         site = gsub(&quot;_&quot;, &quot; &quot;, site),
+         host_genus = gsub(&quot;_&quot;, &quot; &quot;, host_genus),
+         host_species = gsub(&quot;_&quot;, &quot; &quot;, host_species)) |&gt; 
+  mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %&gt;%
+  mutate(latitudinal_band = gsub(&quot;,&quot;, &quot; to &quot;, latitudinal_band) %&gt;%
+                           gsub(&quot;\\]&quot;, &quot;)&quot;, .) %&gt;%
+                           gsub(&quot;(-?\\d+)&quot;, &quot;\\1°S&quot;, .)) %&gt;%
+  filter(!host_species %in% c(&quot;sp1&quot;, &quot;sp2&quot;)) %&gt;%
+  mutate(host_species = factor(host_species, levels = sort(unique(host_species), decreasing = TRUE))) 
+
+
+
+
+p &lt;- ggplot() + theme_bw() +
+  geom_histogram(data=collections |&gt; drop_na(host_species), aes(y=host_species, fill=host_genus), 
+                 show.legend=FALSE, stat=&quot;count&quot;) +
+  guides(fill=FALSE) + ylab(FALSE) +
+  theme(axis.text.y = element_text(size=6)) + xlab(&quot;Number of samples&quot;) +
+  scale_x_continuous(sec.axis = dup_axis(name = &quot;Secondary X Axis&quot;)) 
+
+
+p_plotly &lt;- ggplotly(p, tooltip = c(&quot;host_species&quot;, &quot;count&quot;))
+
+layout(p_plotly,
+        xaxis2 = list(overlaying = &quot;x&quot;,
+                      side = &quot;top&quot;,
+                      title = &quot;Number of samples&quot;))</code></pre>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c4373c24fd6cb6806c5d" style="width:768px;height:1920px;"></div>
+<script type="application/json" data-for="htmlwidget-c4373c24fd6cb6806c5d">{"x":{"data":[{"orientation":"v","width":[2,2,12,6,50,4,2,2,6,7,1,1,1,1,2,3,1,2],"base":[94.549999999999997,95.549999999999997,96.549999999999997,97.549999999999997,98.549999999999997,99.549999999999997,100.55,101.55,102.55,103.55,104.55,105.55,106.55,107.55,108.55,109.55,110.55,111.55],"x":[1,1,6,3,25,2,1,1,3,3.5,0.5,0.5,0.5,0.5,1,1.5,0.5,1],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   2<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  12<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:  50<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:   7<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,165,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":1,"base":37.549999999999997,"x":[0.5],"y":[0.90000000000000568],"text":"count:   1<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(244,100,229,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[18,1],"base":[113.55,114.55],"x":[9,0.5],"y":[0.90000000000000568,0.90000000000000568],"text":["count:  18<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,172,252,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,1,8],"base":[115.55,116.55,117.55],"x":[1.5,0.5,4],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   3<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   8<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,174,249,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":3,"base":73.549999999999997,"x":[1.5],"y":[0.90000000000000568],"text":"count:   3<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(203,122,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,7,1],"base":[120.55,121.55,122.55],"x":[1,3.5,0.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   2<br />host_species: 0.9","count:   7<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,182,236,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":98,"base":123.55,"x":[49],"y":[0.90000000000000568],"text":"count:  98<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,183,231,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":2,"base":226.55000000000001,"x":[1],"y":[0.89999999999997726],"text":"count:   2<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(233,132,43,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[29,1],"base":[180.55000000000001,181.55000000000001],"x":[14.5,0.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:  29<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,185,51,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[23,1,6,1,3],"base":[124.55,125.55,126.55,127.55,128.55000000000001],"x":[11.5,0.5,3,0.5,1.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.89999999999999147,0.89999999999997726],"text":["count:  23<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   3<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,185,226,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,28,1,2,2,11,37],"base":[173.55000000000001,174.55000000000001,175.55000000000001,176.55000000000001,177.55000000000001,178.55000000000001,179.55000000000001],"x":[1.5,14,0.5,1,1,5.5,18.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   3<br />host_species: 0.9","count:  28<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  11<br />host_species: 0.9","count:  37<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,186,66,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[17,3],"base":[171.55000000000001,172.55000000000001],"x":[8.5,1.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:  17<br />host_species: 0.9","count:   3<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,188,79,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[15,1,14],"base":[168.55000000000001,169.55000000000001,170.55000000000001],"x":[7.5,0.5,7],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:  15<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  14<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,188,90,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":1,"base":227.55000000000001,"x":[0.5],"y":[0.89999999999997726],"text":"count:   1<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(237,129,61,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,39,5,3,34,21],"base":[162.55000000000001,163.55000000000001,164.55000000000001,165.55000000000001,166.55000000000001,167.55000000000001],"x":[1,19.5,2.5,1.5,17,10.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   2<br />host_species: 0.9","count:  39<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:  34<br />host_species: 0.9","count:  21<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,189,101,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,4,1],"base":[131.55000000000001,132.55000000000001,133.55000000000001],"x":[0.5,2,0.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,189,209,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,1,43,1,2,5,1,4,1],"base":[153.55000000000001,154.55000000000001,155.55000000000001,156.55000000000001,157.55000000000001,158.55000000000001,159.55000000000001,160.55000000000001,161.55000000000001],"x":[0.5,0.5,21.5,0.5,1,2.5,0.5,2,0.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  43<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,190,111,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":5,"base":216.55000000000001,"x":[2.5],"y":[0.89999999999997726],"text":"count:   5<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(208,148,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,1],"base":[150.55000000000001,151.55000000000001],"x":[1.5,0.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   3<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,191,129,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":8,"base":149.55000000000001,"x":[4],"y":[0.89999999999997726],"text":"count:   8<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,137,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":12,"base":148.55000000000001,"x":[6],"y":[0.89999999999997726],"text":"count:  12<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,146,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":17,"base":140.55000000000001,"x":[8.5],"y":[0.89999999999997726],"text":"count:  17<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,176,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[31,17,1],"base":[137.55000000000001,138.55000000000001,139.55000000000001],"x":[15.5,8.5,0.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:  31<br />host_species: 0.9","count:  17<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,183,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":45,"base":136.55000000000001,"x":[22.5],"y":[0.89999999999997726],"text":"count:  45<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,192,190,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":4,"base":147.55000000000001,"x":[2],"y":[0.89999999999997726],"text":"count:   4<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,193,153,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[4,1,3,1,7],"base":[141.55000000000001,142.55000000000001,143.55000000000001,144.55000000000001,145.55000000000001],"x":[2,0.5,1.5,0.5,3.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   4<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   7<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,193,169,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":20,"base":183.55000000000001,"x":[10],"y":[0.89999999999997726],"text":"count:  20<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(33,183,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,2],"base":[92.549999999999997,93.549999999999997],"x":[0.5,1],"y":[0.90000000000000568,0.90000000000000568],"text":["count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(49,162,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[20,10,1,1,1,7],"base":[184.55000000000001,185.55000000000001,186.55000000000001,187.55000000000001,188.55000000000001,189.55000000000001],"x":[10,5,0.5,0.5,0.5,3.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:  20<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   7<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(62,181,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,5],"base":[190.55000000000001,191.55000000000001],"x":[1.5,2.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   3<br />host_species: 0.9","count:   5<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(80,180,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":17,"base":91.549999999999997,"x":[8.5],"y":[0.90000000000000568],"text":"count:  17<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(81,158,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,4,1],"base":[88.549999999999997,89.549999999999997,90.549999999999997],"x":[1,2,0.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   2<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(104,155,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[11,2,1],"base":[85.549999999999997,86.549999999999997,87.549999999999997],"x":[5.5,1,0.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:  11<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(122,151,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[9,5,1,2,4,10],"base":[195.55000000000001,196.55000000000001,197.55000000000001,198.55000000000001,199.55000000000001,200.55000000000001],"x":[4.5,2.5,0.5,1,2,5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   9<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:  10<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(128,173,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,138],"base":[83.549999999999997,84.549999999999997],"x":[1.5,69],"y":[0.90000000000000568,0.90000000000000568],"text":["count:   3<br />host_species: 0.9","count: 138<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(138,147,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,10],"base":[201.55000000000001,202.55000000000001],"x":[1.5,5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   3<br />host_species: 0.9","count:  10<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(138,172,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":6,"base":82.549999999999997,"x":[3],"y":[0.90000000000000568],"text":"count:   6<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(151,143,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":21,"base":204.55000000000001,"x":[10.5],"y":[0.89999999999997726],"text":"count:  21<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(154,168,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,10,69],"base":[205.55000000000001,206.55000000000001,207.55000000000001],"x":[0.5,5,34.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:  69<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(161,166,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,2],"base":[208.55000000000001,209.55000000000001],"x":[0.5,1],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(168,164,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,1,9,1,2],"base":[76.549999999999997,77.549999999999997,78.549999999999997,79.549999999999997,80.549999999999997],"x":[0.5,0.5,4.5,0.5,1],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   9<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(175,134,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":2,"base":74.549999999999997,"x":[1],"y":[0.90000000000000568],"text":"count:   2<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(195,126,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":18,"base":212.55000000000001,"x":[9],"y":[0.89999999999997726],"text":"count:  18<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(187,157,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":3,"base":214.55000000000001,"x":[1.5],"y":[0.89999999999997726],"text":"count:   3<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(198,153,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":9,"base":217.55000000000001,"x":[4.5],"y":[0.89999999999997726],"text":"count:   9<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(213,145,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,48,1,1,54],"base":[67.549999999999997,68.549999999999997,69.549999999999997,70.549999999999997,71.549999999999997],"x":[1.5,24,0.5,0.5,27],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   3<br />host_species: 0.9","count:  48<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  54<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(218,114,251,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[14,1,9,3],"base":[220.55000000000001,221.55000000000001,222.55000000000001,223.55000000000001],"x":[7,0.5,4.5,1.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:  14<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   9<br />host_species: 0.9","count:   3<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(226,137,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[9,1],"base":[64.549999999999997,65.549999999999997],"x":[4.5,0.5],"y":[0.90000000000000568,0.90000000000000568],"text":["count:   9<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(230,108,244,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,69],"base":[224.55000000000001,225.55000000000001],"x":[1,34.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   2<br />host_species: 0.9","count:  69<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(230,135,13,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[9,14,27,10,21,182,57,1],"base":[56.549999999999997,57.549999999999997,58.549999999999997,59.549999999999997,60.549999999999997,61.549999999999997,62.549999999999997,63.549999999999997],"x":[4.5,7,13.5,5,10.5,91,28.5,0.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   9<br />host_species: 0.9","count:  14<br />host_species: 0.9","count:  27<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:  21<br />host_species: 0.9","count: 182<br />host_species: 0.9","count:  57<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(235,105,239,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,10,21,1,8,20,10,1,2,10,7,29,31,50,40,2,11,8,1],"base":[36.549999999999997,38.549999999999997,39.549999999999997,40.549999999999997,41.549999999999997,42.549999999999997,43.549999999999997,44.549999999999997,45.549999999999997,46.549999999999997,47.549999999999997,48.549999999999997,49.549999999999997,50.549999999999997,51.549999999999997,52.549999999999997,53.549999999999997,54.549999999999997,55.549999999999997],"x":[1,5,10.5,0.5,4,10,5,0.5,1,5,3.5,14.5,15.5,25,20,1,5.5,4,0.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   2<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:  21<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   8<br />host_species: 0.9","count:  20<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:   7<br />host_species: 0.9","count:  29<br />host_species: 0.9","count:  31<br />host_species: 0.9","count:  50<br />host_species: 0.9","count:  40<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  11<br />host_species: 0.9","count:   8<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(240,103,234,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,3],"base":[228.55000000000001,229.55000000000001],"x":[0.5,1.5],"y":[0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:   3<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(240,127,75,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[15,6],"base":[230.55000000000001,231.55000000000001],"x":[7.5,3],"y":[0.89999999999997726,0.89999999999997726],"text":["count:  15<br />host_species: 0.9","count:   6<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(243,124,87,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,1,1,89,28,7,1,188,54,1,1,3,7,1,2,6,3,2,64,1,3,2,1,1,1,77,13,1,1,58,11,3,6,5,5,6,2,18,5,1,1],"base":[232.55000000000001,233.55000000000001,234.55000000000001,235.55000000000001,236.55000000000001,237.55000000000001,238.55000000000001,239.55000000000001,240.55000000000001,241.55000000000001,242.55000000000001,243.55000000000001,244.55000000000001,245.55000000000001,246.55000000000001,247.55000000000001,248.55000000000001,249.55000000000001,250.55000000000001,251.55000000000001,252.55000000000001,253.55000000000001,254.55000000000001,255.55000000000001,256.55000000000001,257.55000000000001,258.55000000000001,259.55000000000001,260.55000000000001,261.55000000000001,262.55000000000001,263.55000000000001,264.55000000000001,265.55000000000001,266.55000000000001,267.55000000000001,268.55000000000001,269.55000000000001,270.55000000000001,271.55000000000001,272.55000000000001],"x":[0.5,0.5,0.5,44.5,14,3.5,0.5,94,27,0.5,0.5,1.5,3.5,0.5,1,3,1.5,1,32,0.5,1.5,1,0.5,0.5,0.5,38.5,6.5,0.5,0.5,29,5.5,1.5,3,2.5,2.5,3,1,9,2.5,0.5,0.5],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  89<br />host_species: 0.9","count:  28<br />host_species: 0.9","count:   7<br />host_species: 0.9","count:   1<br />host_species: 0.9","count: 188<br />host_species: 0.9","count:  54<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   7<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  64<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  77<br />host_species: 0.9","count:  13<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:  58<br />host_species: 0.9","count:  11<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   6<br />host_species: 0.9","count:   2<br />host_species: 0.9","count:  18<br />host_species: 0.9","count:   5<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(245,121,99,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[5,10,1,7],"base":[32.549999999999997,33.549999999999997,34.549999999999997,35.549999999999997],"x":[2.5,5,0.5,3.5],"y":[0.90000000000000568,0.90000000000000568,0.90000000000000568,0.90000000000000568],"text":["count:   5<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:   1<br />host_species: 0.9","count:   7<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(247,99,224,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[3,56,10,1,105,2],"base":[273.55000000000001,274.55000000000001,275.55000000000001,276.55000000000001,277.55000000000001,278.55000000000001],"x":[1.5,28,5,0.5,52.5,1],"y":[0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726,0.89999999999997726],"text":["count:   3<br />host_species: 0.9","count:  56<br />host_species: 0.9","count:  10<br />host_species: 0.9","count:   1<br />host_species: 0.9","count: 105<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":1,"base":31.550000000000001,"x":[0.5],"y":[0.90000000000000213],"text":"count:   1<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(250,98,218,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":20,"base":0.55000000000000004,"x":[10],"y":[0.89999999999999991],"text":"count:  20<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(250,116,119,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":97,"base":30.550000000000001,"x":[48.5],"y":[0.89999999999999858],"text":"count:  97<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(252,97,212,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,305,35,20,25,60,124,14,4,16,6],"base":[1.55,2.5499999999999998,3.5499999999999998,4.5499999999999998,5.5499999999999998,6.5499999999999998,7.5499999999999998,8.5500000000000007,9.5500000000000007,10.550000000000001,11.550000000000001],"x":[1,152.5,17.5,10,12.5,30,62,7,2,8,3],"y":[0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"text":["count:   2<br />host_species: 0.9","count: 305<br />host_species: 0.9","count:  35<br />host_species: 0.9","count:  20<br />host_species: 0.9","count:  25<br />host_species: 0.9","count:  60<br />host_species: 0.9","count: 124<br />host_species: 0.9","count:  14<br />host_species: 0.9","count:   4<br />host_species: 0.9","count:  16<br />host_species: 0.9","count:   6<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(252,113,128,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":2,"base":29.550000000000001,"x":[1],"y":[0.89999999999999858],"text":"count:   2<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(254,97,206,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[6,5],"base":[12.550000000000001,13.550000000000001],"x":[3,2.5],"y":[0.89999999999999858,0.89999999999999858],"text":["count:   6<br />host_species: 0.9","count:   5<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(254,110,137,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[13,38,7],"base":[26.550000000000001,27.550000000000001,28.550000000000001],"x":[6.5,19,3.5],"y":[0.89999999999999858,0.89999999999999858,0.89999999999999858],"text":["count:  13<br />host_species: 0.9","count:  38<br />host_species: 0.9","count:   7<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,97,199,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[119,2],"base":[24.550000000000001,25.550000000000001],"x":[59.5,1],"y":[0.89999999999999858,0.89999999999999858],"text":["count: 119<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,98,192,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":9,"base":23.550000000000001,"x":[4.5],"y":[0.89999999999999858],"text":"count:   9<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,99,185,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[1,2],"base":[21.550000000000001,22.550000000000001],"x":[0.5,1],"y":[0.89999999999999858,0.89999999999999858],"text":["count:   1<br />host_species: 0.9","count:   2<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,100,178,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[11,105],"base":[19.550000000000001,20.550000000000001],"x":[5.5,52.5],"y":[0.89999999999999858,0.89999999999999858],"text":["count:  11<br />host_species: 0.9","count: 105<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,102,170,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":4,"base":18.550000000000001,"x":[2],"y":[0.89999999999999858],"text":"count:   4<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,103,162,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":[2,3,1],"base":[15.550000000000001,16.550000000000001,17.550000000000001],"x":[1,1.5,0.5],"y":[0.89999999999999858,0.89999999999999858,0.89999999999999858],"text":["count:   2<br />host_species: 0.9","count:   3<br />host_species: 0.9","count:   1<br />host_species: 0.9"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,106,154,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null},{"orientation":"v","width":1,"base":14.550000000000001,"x":[0.5],"y":[0.89999999999999858],"text":"count:   1<br />host_species: 0.9","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,108,146,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","mode":"","frame":null}],"layout":{"margin":{"t":18.922374429223744,"r":7.3059360730593621,"b":32.876712328767127,"l":149.10751349107514},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-15.25,320.25],"tickmode":"array","ticktext":["0","100","200","300"],"tickvals":[0,100,199.99999999999997,300],"categoryorder":"array","categoryarray":["0","100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Number of samples","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,279.60000000000002],"tickmode":"array","ticktext":["Xenia sp","Turbinaria stellulata","Turbinaria sp","Turbinaria reniformis","Turbinaria radicalis","Turbinaria peltata","Turbinaria patula","Turbinaria mesenterina","Turbinaria mesen-frond","Turbinaria irregularis","Turbinaria frondens","Turbinaria bifrons","Tubipora sp","Tubipora musica","Tubastrea micranthus","Tridacna squamosa","Tridacna sp","Tridacna derasa","Sympodium sp","Stylophora sp","Stylophora pistillata","Stichodactyla sp","Stichodactyla mertensii","Stereonephthya sp","Sinularia sp","Sinularia brassica","Seriatopora sp","Seriatopora hystrix","Seriatopora caliendrum","Scolymia sp","Sarcophyton sp","Rhytisma sp","Psammocora sp","Psammocora profundacella","Psammocora haimeana","Psammocora contigua","Porites Turbinaria?","Porites sp?","Porites sp nov","Porites sp","Porites solida","Porites rus","Porites Psammocora?","Porites nigrescens","Porites myrmidonensis/vaughanii","Porites Millepora?","Porites mayeri","Porites lobata/lutea/mayeri","Porites lobata/lutea","Porites lobata","Porites lichen","Porites heronensis","Porites evermanni","Porites cylindrica","Porites australiensis/solida","Porites australiensis","Pocillopora verrucosa","Pocillopora sp","Pocillopora meandrina","Pocillopora grandis","Pocillopora damicornis/aliciae","Pocillopora damicornis","Pocillopora aliceae","Pocillopora acuta","Plesiastrea versipora","Plesiastrea sp","Plerogyra sinuosa","Platygyra verweyi","Platygyra sp","Platygyra sinensis","Platygyra pini","Platygyra daedalea","Pinnigorgia sp","Physogyra lichtensteinii","Pennaria disticha","Pectinia lactuca","Pavona venosa","Pavona varians","Pavona sp","Pavona clavus","Pavona cactus","Paraplexaura sp","Paralemnalia sp","Paragoniastrea sp","Paragoniastrea australensis","Palythoa tuberculosa","Palythoa sp","Palythoa heliodiscus","Pachyseris speciosa","Pachyseris sp","Pachyseris gemmae","Nephthea sp","Moseleya sp","Moseleya latistellata","Montipora verrucosa","Montipora undata","Montipora turtlensis","Montipora spongoides","Montipora sp","Montipora monasteriata","Montipora mollis","Montipora meandrina","Montipora informis","Montipora foliosa","Montipora flabellata","Montipora effusa","Montipora efflorescens","Montipora danae","Montipora crassituberculata","Montipora corbettensis","Montipora caliculata","Montipora aequituberculata","Montastrea sp","Millepora sp","Millepora platyphylla","Merulina sp","Merulina scabricula","Merulina ampliata","Menella sp","Melithaea sp","Macrorhynchia sp","Macrorhynchia phillippina","Macrorhynchia philippina","Lobophytum sp","Lobophyllia sp","Lobophyllia recta","Lobophyllia hemprichii","Lobophyllia flabelliformis","Lobophyllia agaricia","Litophyton sp","Lithophyllon concinna ","Leptoseris yabei","Leptoseris sp","Leptoseris incrustans","Leptastrea sp","Lemnalia sp","Klyxum sp","Isopora sp","Isopora palifera","Isopora cuneata","Isis sp","Hydnophora sp","Hydnophora pilosa","Hydnophora microconos","Hydnophora grandis","Hydnophora exesa","Hippopus hippopus","Hicksonella sp","Heteroxenia sp","Heteractis crispa","Halomitra sp","Halomitra pileus","Guaiagorgia sp","Goniopora tenuidens","Goniopora stokesi","Goniopora sp","Goniopora somaliensis","Goniopora norfolkensis","Goniopora lobata","Goniopora fruticosa","Goniopora djiboutiensis","Goniopora columna","Goniastrea stelligera","Goniastrea sp","Goniastrea retiformis","Goniastrea pectinata","Goniastrea favulus","Goniastrea edwardsi","Galaxea sp","Galaxea longisepta","Galaxea fascicularis","Fungia sp","Fungia fungites","Favites valenciennesi","Favites sp","Favites pentagona","Favites magnistella","Favites flexuosa","Favites complanata","Favites abdita","Favia sp","Favia maritima","Entacmaea quadricolor","Efflatounaria sp","Echinopora sp","Echinopora pacificus","Echinopora mammiformis","Echinopora lamellosa","Echinopora horrida","Echinopora fruticulosa","Echinophyllia sp","Echinophyllia aspera","Dysidea sp","Distichopora sp","Discosoma sp","Dipsastrea speciosa","Dipsastrea pallida","Dipsastrea matthaii","Dipsastrea maritima","Dipsastrea lizardensis","Dipsastrea favus","Diploastrea sp","Diploastrea heliopora","Didemnium sp","Dendronephthya sp","Cyphastrea?","Cyphastrea sp","Cyphastrea serailia","Ctenactis echinata","Ctenactis crassa","Coscinaraea columna","Clavularia sp","Cladiella sp","Cespitularia sp","Caulastraea furcata","Carteriospongia sp","Capnella sp","Briareum sp","Australogyra zelli","Astrogorgia sp","Astreopora sp","Astreopora ocellata","Astreopora myriophthalma","Astreopora incrustans","Astrea sp","Astrea curta","Anthelia sp","Alveopora sp","Alertigorgia sp","Alertigorgia orientalis","Aglaophenia sp","Aglaophenia cupressina","Acropora yongei","Acropora willisae","Acropora verweyi","Acropora valida","Acropora tenuis","Acropora subulata","Acropora spicifera","Acropora sp","Acropora solitaryensis","Acropora selago","Acropora secale","Acropora sarmentosa","Acropora robusta","Acropora pulchra","Acropora ocellata","Acropora nasuta","Acropora muricata","Acropora monticulosa","Acropora millepora","Acropora lutkeni","Acropora loripes","Acropora longicyathus","Acropora listeri","Acropora latistella","Acropora intermedia","Acropora hyacinthus","Acropora humilis","Acropora granulosa","Acropora grandis","Acropora glauca","Acropora gemmifera","Acropora formosa","Acropora florida","Acropora elseyi","Acropora digitifera","Acropora cytherea","Acropora clathrata","Acropora cerealis","Acropora aspera","Acropora anthocercis","Acropora abrotanoides","Acanthastrea sp","Acanthastrea lordhowensis","Acanthastrea hillae","Acanthastrea hemprichii","Acanthastrea echinata","Acantastrea sp"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,25.999999999999996,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44.000000000000007,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61.000000000000007,62,63,64,65,66,67,68,69,70,71,72,73,74,74.999999999999986,76,77,78,79,80,81,82,83,84.000000000000014,85,86,87,88,89,90,91,91.999999999999986,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,108.99999999999999,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126.00000000000001,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,154.99999999999997,156,157,158,159,160,161,162,163,164.00000000000003,165,166,167,168,169,170,171,172,173.00000000000003,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,188.99999999999997,190,191,192,193,194,195,196,197,198.00000000000003,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,213.99999999999997,215,216,217,218,219,220,221,222,222.99999999999997,224,225,226,227,228,229,230,231,232.00000000000003,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,247.99999999999997,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279],"categoryorder":"array","categoryarray":["Xenia sp","Turbinaria stellulata","Turbinaria sp","Turbinaria reniformis","Turbinaria radicalis","Turbinaria peltata","Turbinaria patula","Turbinaria mesenterina","Turbinaria mesen-frond","Turbinaria irregularis","Turbinaria frondens","Turbinaria bifrons","Tubipora sp","Tubipora musica","Tubastrea micranthus","Tridacna squamosa","Tridacna sp","Tridacna derasa","Sympodium sp","Stylophora sp","Stylophora pistillata","Stichodactyla sp","Stichodactyla mertensii","Stereonephthya sp","Sinularia sp","Sinularia brassica","Seriatopora sp","Seriatopora hystrix","Seriatopora caliendrum","Scolymia sp","Sarcophyton sp","Rhytisma sp","Psammocora sp","Psammocora profundacella","Psammocora haimeana","Psammocora contigua","Porites Turbinaria?","Porites sp?","Porites sp nov","Porites sp","Porites solida","Porites rus","Porites Psammocora?","Porites nigrescens","Porites myrmidonensis/vaughanii","Porites Millepora?","Porites mayeri","Porites lobata/lutea/mayeri","Porites lobata/lutea","Porites lobata","Porites lichen","Porites heronensis","Porites evermanni","Porites cylindrica","Porites australiensis/solida","Porites australiensis","Pocillopora verrucosa","Pocillopora sp","Pocillopora meandrina","Pocillopora grandis","Pocillopora damicornis/aliciae","Pocillopora damicornis","Pocillopora aliceae","Pocillopora acuta","Plesiastrea versipora","Plesiastrea sp","Plerogyra sinuosa","Platygyra verweyi","Platygyra sp","Platygyra sinensis","Platygyra pini","Platygyra daedalea","Pinnigorgia sp","Physogyra lichtensteinii","Pennaria disticha","Pectinia lactuca","Pavona venosa","Pavona varians","Pavona sp","Pavona clavus","Pavona cactus","Paraplexaura sp","Paralemnalia sp","Paragoniastrea sp","Paragoniastrea australensis","Palythoa tuberculosa","Palythoa sp","Palythoa heliodiscus","Pachyseris speciosa","Pachyseris sp","Pachyseris gemmae","Nephthea sp","Moseleya sp","Moseleya latistellata","Montipora verrucosa","Montipora undata","Montipora turtlensis","Montipora spongoides","Montipora sp","Montipora monasteriata","Montipora mollis","Montipora meandrina","Montipora informis","Montipora foliosa","Montipora flabellata","Montipora effusa","Montipora efflorescens","Montipora danae","Montipora crassituberculata","Montipora corbettensis","Montipora caliculata","Montipora aequituberculata","Montastrea sp","Millepora sp","Millepora platyphylla","Merulina sp","Merulina scabricula","Merulina ampliata","Menella sp","Melithaea sp","Macrorhynchia sp","Macrorhynchia phillippina","Macrorhynchia philippina","Lobophytum sp","Lobophyllia sp","Lobophyllia recta","Lobophyllia hemprichii","Lobophyllia flabelliformis","Lobophyllia agaricia","Litophyton sp","Lithophyllon concinna ","Leptoseris yabei","Leptoseris sp","Leptoseris incrustans","Leptastrea sp","Lemnalia sp","Klyxum sp","Isopora sp","Isopora palifera","Isopora cuneata","Isis sp","Hydnophora sp","Hydnophora pilosa","Hydnophora microconos","Hydnophora grandis","Hydnophora exesa","Hippopus hippopus","Hicksonella sp","Heteroxenia sp","Heteractis crispa","Halomitra sp","Halomitra pileus","Guaiagorgia sp","Goniopora tenuidens","Goniopora stokesi","Goniopora sp","Goniopora somaliensis","Goniopora norfolkensis","Goniopora lobata","Goniopora fruticosa","Goniopora djiboutiensis","Goniopora columna","Goniastrea stelligera","Goniastrea sp","Goniastrea retiformis","Goniastrea pectinata","Goniastrea favulus","Goniastrea edwardsi","Galaxea sp","Galaxea longisepta","Galaxea fascicularis","Fungia sp","Fungia fungites","Favites valenciennesi","Favites sp","Favites pentagona","Favites magnistella","Favites flexuosa","Favites complanata","Favites abdita","Favia sp","Favia maritima","Entacmaea quadricolor","Efflatounaria sp","Echinopora sp","Echinopora pacificus","Echinopora mammiformis","Echinopora lamellosa","Echinopora horrida","Echinopora fruticulosa","Echinophyllia sp","Echinophyllia aspera","Dysidea sp","Distichopora sp","Discosoma sp","Dipsastrea speciosa","Dipsastrea pallida","Dipsastrea matthaii","Dipsastrea maritima","Dipsastrea lizardensis","Dipsastrea favus","Diploastrea sp","Diploastrea heliopora","Didemnium sp","Dendronephthya sp","Cyphastrea?","Cyphastrea sp","Cyphastrea serailia","Ctenactis echinata","Ctenactis crassa","Coscinaraea columna","Clavularia sp","Cladiella sp","Cespitularia sp","Caulastraea furcata","Carteriospongia sp","Capnella sp","Briareum sp","Australogyra zelli","Astrogorgia sp","Astreopora sp","Astreopora ocellata","Astreopora myriophthalma","Astreopora incrustans","Astrea sp","Astrea curta","Anthelia sp","Alveopora sp","Alertigorgia sp","Alertigorgia orientalis","Aglaophenia sp","Aglaophenia cupressina","Acropora yongei","Acropora willisae","Acropora verweyi","Acropora valida","Acropora tenuis","Acropora subulata","Acropora spicifera","Acropora sp","Acropora solitaryensis","Acropora selago","Acropora secale","Acropora sarmentosa","Acropora robusta","Acropora pulchra","Acropora ocellata","Acropora nasuta","Acropora muricata","Acropora monticulosa","Acropora millepora","Acropora lutkeni","Acropora loripes","Acropora longicyathus","Acropora listeri","Acropora latistella","Acropora intermedia","Acropora hyacinthus","Acropora humilis","Acropora granulosa","Acropora grandis","Acropora glauca","Acropora gemmifera","Acropora formosa","Acropora florida","Acropora elseyi","Acropora digitifera","Acropora cytherea","Acropora clathrata","Acropora cerealis","Acropora aspera","Acropora anthocercis","Acropora abrotanoides","Acanthastrea sp","Acanthastrea lordhowensis","Acanthastrea hillae","Acanthastrea hemprichii","Acanthastrea echinata","Acantastrea sp"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":7.9701120797011216},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":false,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative","xaxis2":{"overlaying":"x","side":"top","title":"Number of samples"}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"64005a53c893":{"y":{},"fill":{},"type":"bar"}},"cur_data":"64005a53c893","visdat":{"64005a53c893":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

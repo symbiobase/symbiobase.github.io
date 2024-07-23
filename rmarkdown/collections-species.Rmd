@@ -1,0 +1,61 @@
+---
+title: "Collections by host species"
+output: 
+  html_document:
+    toc: false
+date: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The collection by numbers (01/01/2024):
+
+-   4143 samples
+-   54 host families
+-   279 host species
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=8, fig.height=20}
+
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(ggplot2)
+library(plotly)
+
+collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+  clean_names() |>
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+  mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %>%
+  mutate(latitudinal_band = gsub(",", " to ", latitudinal_band) %>%
+                           gsub("\\]", ")", .) %>%
+                           gsub("(-?\\d+)", "\\1°S", .)) %>%
+  filter(!host_species %in% c("sp1", "sp2")) %>%
+  mutate(host_species = factor(host_species, levels = sort(unique(host_species), decreasing = TRUE))) 
+
+
+
+
+p <- ggplot() + theme_bw() +
+  geom_histogram(data=collections |> drop_na(host_species), aes(y=host_species, fill=host_genus), 
+                 show.legend=FALSE, stat="count") +
+  guides(fill=FALSE) + ylab(FALSE) +
+  theme(axis.text.y = element_text(size=6)) + xlab("Number of samples") +
+  scale_x_continuous(sec.axis = dup_axis(name = "Secondary X Axis")) 
+
+
+p_plotly <- ggplotly(p, tooltip = c("host_species", "count"))
+
+layout(p_plotly,
+        xaxis2 = list(overlaying = "x",
+                      side = "top",
+                      title = "Number of samples"))
+
+```

@@ -1,0 +1,62 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(ggplot2)
+library(plotly)
+
+readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+  clean_names() |>
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+  # drop_na(lat) %>%
+  mutate(latitude_groups = cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE)) %>%
+  filter(!latitude_groups=="NA") |> 
+  mutate(latitude_groups = gsub(",", " to ", latitude_groups) %>%
+                           gsub("\\]", ")", .) %>%
+                           gsub("(-?\\d+)", "\\1°S", .)) |> 
+ggplot() + theme_bw() +
+  ggtitle("Latitude") +
+  geom_bar(aes(x="", y=latitude_groups, fill=latitude_groups), stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  scale_fill_brewer(palette="RdBu") 
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+

@@ -10,4 +10,61 @@ date: ""
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![](images/C8CF89A6-B6D6-40D8-8444-2C37DD1DBA7C.png)
+<style>
+/* Set a custom width for the main content */
+.main-container {
+  max-width: 1200px; /* Adjust the width as needed */
+  margin: 0 auto;   /* Center the content */
+}
+</style>
+
+```{r, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(DT)
+
+
+collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+  clean_names() |>
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+  mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %>%
+  mutate(latitudinal_band = gsub(",", " to ", latitudinal_band) %>%
+                           gsub("\\]", ")", .) %>%
+                           gsub("(-?\\d+)", "\\1°S", .)) %>%
+  arrange(host_genus)
+
+
+datatable(collections,  
+          rownames = FALSE, 
+          colnames = c('Sample ID' = 'sample_id', 'Collection date' = 'collection_date', 'Location' = 'location', 
+                       "Site" = "site", 'Longitude' = "longitude", 'Latitude' = 'latitude', 
+                       "Host family" = "host_family", "Host genus" = "host_genus", "Host species" = "host_species", 
+                       "Latitudinal Band"= "latitudinal_band"),
+          filter = 'top', 
+          extensions = c('Buttons', 'RowGroup', 'Scroller', 'Select', 'SearchPanes'), 
+          options = list(pageLength = 20, 
+                         autoWidth = TRUE,
+                         rowGroup = list(dataSrc = 7),
+                         selection = 'none',
+#                         dom = 'Bfrtip',
+                         buttons = c('copy', 'csv', 'excel'),
+                         deferRender = TRUE,
+                         scrollY = 1000,
+                         scroller = TRUE,
+                         dom = 'Pfrtip', 
+                        columnDefs = list(list(searchPanes = list(show = FALSE), targets = c(1,2,4,5,6)))
+                         )
+            ) %>%
+  formatStyle(
+    c('Host genus','Host species'),
+    fontStyle = 'italic'
+  )
+
+```

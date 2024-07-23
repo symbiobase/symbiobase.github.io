@@ -1,0 +1,67 @@
+---
+title: "Collections by latitude"
+output: 
+  html_document:
+    toc: false
+date: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The collection by numbers (01/01/2024):
+
+-   4143 samples across the Eastern Australian coastline
+-   Subtropical to tropical collections, spanning 20° of latitude (-11.4°S to -30.94°S)
+
+-   54 host families
+-   279 host species
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+
+
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(ggplot2)
+library(plotly)
+
+collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+  clean_names() |>
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+  # mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %>%
+  # mutate(latitudinal_band = gsub(",", " to ", latitudinal_band) %>%
+  #                          gsub("\\]", ")", .) %>%
+  #                          gsub("(-?\\d+)", "\\1°S", .)) %>%
+  # filter(!host_species %in% c("sp1", "sp2")) %>%
+  # mutate(host_family = factor(host_family, levels = sort(unique(host_family), decreasing = TRUE))) 
+  # drop_na(lat) %>%
+  mutate(latitude_groups = cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE)) %>%
+  filter(!latitude_groups=="NA") |> 
+  mutate(latitude_groups = gsub(",", " to ", latitude_groups) %>%
+                           gsub("\\]", ")", .) %>%
+                           gsub("(-?\\d+)", "\\1°S", .)) 
+  
+p <- ggplot() + theme_bw() +
+  geom_histogram(data=collections |> drop_na(latitude_groups), aes(y=latitude_groups, fill=latitude_groups), 
+                 show.legend=FALSE, stat="count", color="black", linewidth=0.2) +
+  guides(fill=FALSE) + ylab(FALSE) +
+  theme(axis.text.y = element_text(size=9)) + xlab("Number of samples") +
+  scale_x_continuous(sec.axis = dup_axis(name = "Secondary X Axis")) +
+  scale_fill_brewer(palette="RdBu") + ylab("Latitude")
+
+
+p_plotly <- ggplotly(p, tooltip = c("latitude_groups", "count"))
+
+layout(p_plotly,
+        xaxis2 = list(overlaying = "x",
+                      side = "bottom",
+                      title = "Number of samples"))
+
+```

@@ -4,11 +4,19 @@ navbar:
   title: "<img id=\"logo\" style=\"width: 140px;\" src=\"images/headerlogo.png\" />     "
   type: default
   left:
-    - text: "Database"
+    - text: "Collections"
       icon: fa-layer-group
       menu:
-        - text: "sequences"
-          href: sequences.html
+        - text: "Collections database"
+          href: symbioDatabase.html
+        - text: "Collection statistics"
+          href: collections-statistics.html
+        - text: "- visualise by family"
+          href: collections-family.html
+        - text: "- visualise by species"
+          href: collections-species.html
+        - text: "- visualise by latitude"
+          href: collections-latitude.html
     - text: "SymbioMap"
       icon: fa-globe
       href: symbioMap.html
