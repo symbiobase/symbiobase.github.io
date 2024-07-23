@@ -23,18 +23,36 @@ library(janitor)
 library(tidyverse)
 library(magrittr)
 library(sf)
-library(tmap)
+library(leaflet)
 library(httr)
 ```
 
+
 ```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
 
-collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+collections_sf <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
   clean_names() |>
-  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  dplyr::select(sample_id, collection_date, location, site, area, subregion, longitude, latitude, host_family, host_genus, host_species) |> 
   mutate(lat=round(latitude,3), lon=round(longitude,3)) |> 
   na.omit(longitude) |> 
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         area = gsub("_", " ", area),
+         subregion = gsub("_", " ", subregion),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+   mutate(gbr_region = case_when(
+    lat > -16 ~ "northern Great Barrier Reef",
+    lat <= -16 & lat > -25 ~ "southern Great Barrier Reef",
+    lat <= -25 ~ "Sub-tropical Queensland"
+  ))
+
+regional_hulls <- collections_sf %>%
+  group_by(gbr_region) %>%
+  summarise(geometry = st_union(geometry)) %>%
+  st_convex_hull() |> 
+  st_centroid()
 
 
 # link to GBR shape file:
@@ -52,7 +70,7 @@ gbr_shape <- st_read(shapefile_path, quiet=TRUE) %>%
          latitude = st_drop_geometry(.)$Y_COORD) |>
   filter(FEAT_NAME=="Reef") |>
   st_set_crs(4283) |>
-  st_transform(20353) |>
+  st_transform(4326) |>
   st_make_valid() |> 
   clean_names() |> 
   dplyr::select(loc_name_s, qld_name, gbr_name, label_id, geometry, longitude, latitude) |> 
@@ -60,41 +78,208 @@ gbr_shape <- st_read(shapefile_path, quiet=TRUE) %>%
   mutate(GBRMPA.id = as.factor(label_id)) |> 
   mutate(id=sub("([a-zA-Z])$", "", label_id)) 
 
-tmap_mode("view") +
-tm_basemap("Esri.WorldImagery", 
-           group="Satellite Map",
-           alpha=0.2) +
-tm_shape(gbr_shape) +
-  tm_polygons(fill="turquoise", 
-              fill_alpha=0.2, 
-              color="white",
-              lwd=0.2,
-              group="Sample Locations",
-              popup.vars=c("Reef.Name", "GBRMPA.id")) +
-tm_shape(collections) +
-  tm_symbols(fill="sample_id",
-             popup.vars=c("location", "site", "lon", "lat", "host_family", "host_genus", "host_species"),
-#             fill.scale=tm_scale_continuous(values="rd_bu"),
-             fill.legend=tm_legend_hide(),
-             color="black",
-             size=0.5,
-             shape=21) 
 
+
+collections_sf <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
+  clean_names() |>
+  dplyr::select(sample_id, collection_date, location, site, area, subregion, longitude, latitude, host_family, host_genus, host_species) |> 
+  mutate(lat=round(latitude,3), lon=round(longitude,3)) |> 
+  na.omit(longitude) |> 
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) |> 
+  mutate(location = gsub("_", " ", location),
+         site = gsub("_", " ", site),
+         area = gsub("_", " ", area),
+         subregion = gsub("_", " ", subregion),
+         host_genus = gsub("_", " ", host_genus),
+         host_species = gsub("_", " ", host_species)) |> 
+   mutate(gbr_region = case_when(
+    lat > -16 ~ "northern Great Barrier Reef",
+    lat <= -16 & lat > -25 ~ "southern Great Barrier Reef",
+    lat <= -25 ~ "Sub-tropical Queensland"
+  ))
+
+```
+### Host Genera {.tabset}
+ 
+#### All Taxa
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
+
+color_mapping <- c(
+  "Acroporidae" = "lightblue",
+  "Merulinidae" = "pink",
+  "Dendrophylliidae" = "purple",
+  "Pocilloporidae" = "green",
+  "Poritidae" = "orange",
+  "Mussidae" = "darkred",
+  "Sarcophytidae" = "beige",
+  "Sinulariidae" = "cadetblue",
+  "Faviidae" = "lightred",
+  "Xeniidae" = "gray"
+)
+
+# Function to get the marker color based on host family
+getMarkerColor <- function(host_family) {
+  color_mapping[host_family]
+}
+
+# Add colors to collections_sf data
+collections_sf$marker_color <- sapply(collections_sf$host_family, getMarkerColor)
+
+
+
+icons <- awesomeIcons(
+  icon = 'ios-close',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = as.character(collections_sf$marker_color)
+)
+
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addPolygons(data=gbr_shape,
+    color = "white",
+    weight = 1,
+    opacity = 0.2,
+    fill = "white",
+    popup = ~paste("Reef Name: ", as.character(Reef.Name), "<br>", "GBRMPA ID: ", as.character(GBRMPA.id)),
+    label =  ~paste(as.character(Reef.Name), "(", as.character(GBRMPA.id), ")"),
+  ) %>%
+   addLabelOnlyMarkers(
+    data = regional_hulls,
+    label = ~gbr_region,
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      direction = "right",
+      offset = c(20, 0),  # x offset, no y offset
+      textOnly = TRUE,    # removes label outline and fill
+      style = list("color" = "white") # Optional: change label text color
+    )
+  ) %>%
+   addAwesomeMarkers(
+    data = collections_sf,
+    icon = icons,
+    clusterOptions = markerClusterOptions(),
+    popup = ~paste("Sample ID:", sample_id,
+                   "<br>Location:", location,
+                   "<br>Site:", site,
+                   "<br>Host family:", host_family,
+                   "<br>Host genus:", host_genus,
+                   "<br>Host species:", host_species),
+    label = ~as.character(sample_id)
+  )
 
 ```
 
-#### Samples by latitude
+#### Acropora
 
-```{r}
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
 
 
-collections %>%
-  drop_na(lat) %>%
-  mutate(latitude_groups = cut(lat, breaks = seq(-34, -13, by = 1), include.lowest = TRUE)) %>%
-  filter(!latitude_groups=="NA") %>%
-ggplot() + theme_bw() +
-  geom_bar(aes(y=latitude_groups, fill=latitude_groups), show.legend=FALSE, color="black", lwd=0.5) +
-  scale_fill_brewer(palette="RdBu") + ylab("Latitude") + xlab("Number of samples")
 
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addPolygons(data=gbr_shape,
+    color = "white",
+    weight = 1,
+    opacity = 0.2,
+    fill = "white",
+    popup = ~paste("Reef Name: ", as.character(Reef.Name), "<br>", "GBRMPA ID: ", as.character(GBRMPA.id)),
+    label =  ~paste(as.character(Reef.Name), "(", as.character(GBRMPA.id), ")"),
+  ) %>%
+   addLabelOnlyMarkers(
+    data = regional_hulls,
+    label = ~gbr_region,
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      direction = "right",
+      offset = c(20, 0),  # x offset, no y offset
+      textOnly = TRUE,    # removes label outline and fill
+      style = list("color" = "white") # Optional: change label text color
+    )
+  ) %>%
+  addMarkers(data = collections_sf |> filter(host_genus=="Acropora"), 
+             clusterOptions = markerClusterOptions(), 
+             popup = ~paste("Sample ID:", sample_id, 
+                            "<br>Location:", location, 
+                            "<br>Site:", site, 
+                            "<br>Host family:", host_family,
+                            "<br>Host genus:", host_genus,
+                            "<br>Host species:", host_species), label = ~as.character(sample_id))
+
+```
+
+#### Acanthastraea
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
+
+
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addPolygons(data=gbr_shape,
+    color = "white",
+    weight = 1,
+    opacity = 0.2,
+    fill = "white",
+    popup = ~paste("Reef Name: ", as.character(Reef.Name), "<br>", "GBRMPA ID: ", as.character(GBRMPA.id)),
+    label =  ~paste(as.character(Reef.Name), "(", as.character(GBRMPA.id), ")"),
+  ) %>%
+    addLabelOnlyMarkers(
+    data = regional_hulls,
+    label = ~gbr_region,
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      direction = "right",
+      offset = c(20, 0),  # x offset, no y offset
+      textOnly = TRUE,    # removes label outline and fill
+      style = list("color" = "white") # Optional: change label text color
+    )
+  ) %>%
+  addMarkers(data = collections_sf |> filter(host_genus=="Acanthastrea"), 
+             clusterOptions = markerClusterOptions(), 
+             popup = ~paste("Sample ID:", sample_id, 
+                            "<br>Location:", location, 
+                            "<br>Site:", site, 
+                            "<br>Host family:", host_family,
+                            "<br>Host genus:", host_genus,
+                            "<br>Host species:", host_species), label = ~as.character(sample_id))
+
+```
+
+
+#### Turbinaria
+
+```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
+
+
+leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addPolygons(data=gbr_shape,
+    color = "white",
+    weight = 1,
+    opacity = 0.2,
+    fill = "white",
+    popup = ~paste("Reef Name: ", as.character(Reef.Name), "<br>", "GBRMPA ID: ", as.character(GBRMPA.id)),
+    label =  ~paste(as.character(Reef.Name), "(", as.character(GBRMPA.id), ")"),
+  ) %>%
+   addLabelOnlyMarkers(
+    data = regional_hulls,
+    label = ~gbr_region,
+    labelOptions = labelOptions(
+      noHide = TRUE,
+      direction = "right",
+      offset = c(20, 0),  # x offset, no y offset
+      textOnly = TRUE,    # removes label outline and fill
+      style = list("color" = "white") # Optional: change label text color
+    )
+  ) %>%
+  addMarkers(data = collections_sf |> filter(host_genus=="Turbinaria"), 
+             clusterOptions = markerClusterOptions(), 
+             popup = ~paste("Sample ID:", sample_id, 
+                            "<br>Location:", location, 
+                            "<br>Site:", site, 
+                            "<br>Host family:", host_family,
+                            "<br>Host genus:", host_genus,
+                            "<br>Host species:", host_species), label = ~as.character(sample_id))
 
 ```

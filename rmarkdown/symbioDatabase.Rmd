@@ -63,6 +63,11 @@ datatable(collections,
                          )
             ) %>%
   formatStyle(
+    c('Sample ID', 'Collection date', 'Location',  "Site", 'Longitude', 'Latitude', 
+      "Host family", "Host genus", "Host species", "Latitudinal Band"),
+    fontSize = '90%'
+  ) %>%
+  formatStyle(
     c('Host genus','Host species'),
     fontStyle = 'italic'
   )
