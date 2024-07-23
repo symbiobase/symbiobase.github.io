@@ -1,0 +1,15 @@
+---
+title: "Symbiobase"
+output: 
+  html_document:
+    toc: false
+date: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+::: {style="text-align: center;"}
+<img src="logo/logo_full.png" width="450"/>
+:::

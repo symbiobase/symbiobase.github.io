@@ -1,0 +1,46 @@
+name: "symbiobase"
+output_dir: "docs"
+navbar:
+  title: "<img id=\"logo\" style=\"width: 140px;\" src=\"images/headerlogo.png\" />     "
+  type: default
+  left:
+    - text: "Database"
+      icon: fa-layer-group
+      menu:
+        - text: "sequences"
+          href: sequences.html
+    - text: "SymbioMap"
+      icon: fa-globe
+      href: symbioMap.html
+    - text: "SymbioR"
+      icon: fa-pie-chart
+      href: symbioR.html
+    - text: "Network"
+      icon: fa-sitemap
+      menu:
+        - text: "Collaborators"
+          icon: fa-address-book
+          href: collaboraotrs.html
+        - text: "Funding"
+          icon: fa-hashtag
+          href: funding.html
+        - text: "Publications"
+          icon: fa-file
+          href: collaborators.html
+        - text: "Contact"
+          icon: fa-address-book
+          href: contacts.html
+    - text: "GitHub"
+      icon: fa-github
+      href: https://github.com/symbiobase/
+output:
+  html_document:
+    theme: spacelab
+    highlight: textmate
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    code_folding: hide
+    css: symbiobase.css
+    fig_caption: true
