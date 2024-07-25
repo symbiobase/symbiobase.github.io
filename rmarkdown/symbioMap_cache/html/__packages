@@ -18,3 +18,10 @@ httr
 magrittr
 leaflet
 DT
+plotly
+flexdashboard
+patchwork
+rerddap
+terra
+tidyterra
+symbioR

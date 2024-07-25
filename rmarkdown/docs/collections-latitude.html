@@ -267,19 +267,39 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="symbioDatabase.html">Collections database</a>
+      <a href="symbioDatabase.html">
+        <span class="fa fa-database"></span>
+         
+        Collections database
+      </a>
     </li>
     <li>
-      <a href="collections-statistics.html">Collection statistics</a>
+      <a href="collections-statistics.html">
+        <span class="fa fa-diagram-project"></span>
+         
+        Collection statistics
+      </a>
     </li>
     <li>
-      <a href="collections-family.html">- visualise by family</a>
+      <a href="collections-family.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by host family
+      </a>
     </li>
     <li>
-      <a href="collections-species.html">- visualise by species</a>
+      <a href="collections-species.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by host species
+      </a>
     </li>
     <li>
-      <a href="collections-latitude.html">- visualise by latitude</a>
+      <a href="collections-latitude.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by latitude
+      </a>
     </li>
   </ul>
 </li>
@@ -290,12 +310,37 @@ $(document).ready(function () {
     SymbioMap
   </a>
 </li>
-<li>
-  <a href="symbioR.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-pie-chart"></span>
      
     SymbioR
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="symbioR.html">
+        <span class="fa fa-chart-simple"></span>
+         
+        - symbioR Introduction
+      </a>
+    </li>
+    <li>
+      <a href="symbioR_workflow.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - symbioR workflow
+      </a>
+    </li>
+    <li>
+      <a href="symbioR_visualise.html">
+        <span class="fa fa-chart-bar"></span>
+         
+        - symbioR_visualise
+      </a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -328,7 +373,7 @@ $(document).ready(function () {
       </a>
     </li>
     <li>
-      <a href="contacts.html">
+      <a href="https://github.com/symbiobase/">
         <span class="fa fa-address-book"></span>
          
         Contact
@@ -378,12 +423,10 @@ $(document).ready(function () {
 </ul>
 <pre class="r"><code>library(tidyverse)
 library(lubridate)
-library(janitor)
 library(ggplot2)
 library(plotly)
 
-collections &lt;- readxl::read_excel(&quot;/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx&quot;) |&gt;
-  clean_names() |&gt;
+collections &lt;- read.csv(&quot;https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv&quot;) |&gt;
   dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |&gt; 
   mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |&gt; 
   mutate(location = gsub(&quot;_&quot;, &quot; &quot;, location),
@@ -418,8 +461,8 @@ layout(p_plotly,
         xaxis2 = list(overlaying = &quot;x&quot;,
                       side = &quot;bottom&quot;,
                       title = &quot;Number of samples&quot;))</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-2788dc3ed77f40753752" style="width:768px;height:576px;"></div>
-<script type="application/json" data-for="htmlwidget-2788dc3ed77f40753752">{"x":{"data":[{"orientation":"v","width":514,"base":10.550000000000001,"x":[257],"y":[0.89999999999999858],"text":"count: 514<br />latitude_groups: 0.9<br />latitude_groups: (-31°S to -30°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(5,48,97,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":167,"base":9.5500000000000007,"x":[83.5],"y":[0.89999999999999858],"text":"count: 167<br />latitude_groups: 0.9<br />latitude_groups: (-30°S to -29°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(33,102,172,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":210,"base":8.5500000000000007,"x":[105],"y":[0.89999999999999858],"text":"count: 210<br />latitude_groups: 0.9<br />latitude_groups: (-29°S to -28°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,147,195,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":229,"base":0.55000000000000004,"x":[114.5],"y":[0.89999999999999991],"text":"count: 229<br />latitude_groups: 0.9<br />latitude_groups: (-14°S to -13°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(103,0,31,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":167,"base":7.5499999999999998,"x":[83.5],"y":[0.89999999999999947],"text":"count: 167<br />latitude_groups: 0.9<br />latitude_groups: (-28°S to -27°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(146,197,222,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":760,"base":1.55,"x":[380],"y":[0.90000000000000013],"text":"count: 760<br />latitude_groups: 0.9<br />latitude_groups: (-15°S to -14°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(178,24,43,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":507,"base":6.5499999999999998,"x":[253.5],"y":[0.90000000000000036],"text":"count: 507<br />latitude_groups: 0.9<br />latitude_groups: (-27°S to -26°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(209,229,240,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":69,"base":2.5499999999999998,"x":[34.5],"y":[0.90000000000000036],"text":"count:  69<br />latitude_groups: 0.9<br />latitude_groups: (-17°S to -16°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(214,96,77,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":608,"base":3.5499999999999998,"x":[304],"y":[0.90000000000000036],"text":"count: 608<br />latitude_groups: 0.9<br />latitude_groups: (-24°S to -23°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(244,165,130,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":31,"base":5.5499999999999998,"x":[15.5],"y":[0.90000000000000036],"text":"count:  31<br />latitude_groups: 0.9<br />latitude_groups: (-26°S to -25°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(247,247,247,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":555,"base":4.5499999999999998,"x":[277.5],"y":[0.90000000000000036],"text":"count: 555<br />latitude_groups: 0.9<br />latitude_groups: (-25°S to -24°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(253,219,199,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":25.74124809741248,"r":7.3059360730593621,"b":39.69558599695587,"l":121.21212121212123},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-38,798],"tickmode":"array","ticktext":["0","200","400","600"],"tickvals":[0,200,400,600],"categoryorder":"array","categoryarray":["0","200","400","600"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Number of samples","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,11.6],"tickmode":"array","ticktext":["(-14°S to -13°S)","(-15°S to -14°S)","(-17°S to -16°S)","(-24°S to -23°S)","(-25°S to -24°S)","(-26°S to -25°S)","(-27°S to -26°S)","(-28°S to -27°S)","(-29°S to -28°S)","(-30°S to -29°S)","(-31°S to -30°S)"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11],"categoryorder":"array","categoryarray":["(-14°S to -13°S)","(-15°S to -14°S)","(-17°S to -16°S)","(-24°S to -23°S)","(-25°S to -24°S)","(-26°S to -25°S)","(-27°S to -26°S)","(-28°S to -27°S)","(-29°S to -28°S)","(-30°S to -29°S)","(-31°S to -30°S)"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.955168119551683},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Latitude","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative","xaxis2":{"overlaying":"x","side":"bottom","title":"Number of samples"}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6ce4dc0a492":{"y":{},"fill":{},"type":"bar"}},"cur_data":"6ce4dc0a492","visdat":{"6ce4dc0a492":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1c8114909d841d954f6d" style="width:768px;height:576px;"></div>
+<script type="application/json" data-for="htmlwidget-1c8114909d841d954f6d">{"x":{"data":[{"orientation":"v","width":514,"base":10.550000000000001,"x":[257],"y":[0.89999999999999858],"text":"count: 514<br />latitude_groups: 0.9<br />latitude_groups: (-31°S to -30°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(5,48,97,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":167,"base":9.5500000000000007,"x":[83.5],"y":[0.89999999999999858],"text":"count: 167<br />latitude_groups: 0.9<br />latitude_groups: (-30°S to -29°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(33,102,172,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":210,"base":8.5500000000000007,"x":[105],"y":[0.89999999999999858],"text":"count: 210<br />latitude_groups: 0.9<br />latitude_groups: (-29°S to -28°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,147,195,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":229,"base":0.55000000000000004,"x":[114.5],"y":[0.89999999999999991],"text":"count: 229<br />latitude_groups: 0.9<br />latitude_groups: (-14°S to -13°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(103,0,31,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":167,"base":7.5499999999999998,"x":[83.5],"y":[0.89999999999999947],"text":"count: 167<br />latitude_groups: 0.9<br />latitude_groups: (-28°S to -27°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(146,197,222,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":760,"base":1.55,"x":[380],"y":[0.90000000000000013],"text":"count: 760<br />latitude_groups: 0.9<br />latitude_groups: (-15°S to -14°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(178,24,43,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":507,"base":6.5499999999999998,"x":[253.5],"y":[0.90000000000000036],"text":"count: 507<br />latitude_groups: 0.9<br />latitude_groups: (-27°S to -26°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(209,229,240,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":69,"base":2.5499999999999998,"x":[34.5],"y":[0.90000000000000036],"text":"count:  69<br />latitude_groups: 0.9<br />latitude_groups: (-17°S to -16°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(214,96,77,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":608,"base":3.5499999999999998,"x":[304],"y":[0.90000000000000036],"text":"count: 608<br />latitude_groups: 0.9<br />latitude_groups: (-24°S to -23°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(244,165,130,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":31,"base":5.5499999999999998,"x":[15.5],"y":[0.90000000000000036],"text":"count:  31<br />latitude_groups: 0.9<br />latitude_groups: (-26°S to -25°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(247,247,247,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":555,"base":4.5499999999999998,"x":[277.5],"y":[0.90000000000000036],"text":"count: 555<br />latitude_groups: 0.9<br />latitude_groups: (-25°S to -24°S)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(253,219,199,1)","line":{"width":0.75590551181102372,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":25.74124809741248,"r":7.3059360730593621,"b":39.69558599695587,"l":121.21212121212123},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-38,798],"tickmode":"array","ticktext":["0","200","400","600"],"tickvals":[0,200,400,600],"categoryorder":"array","categoryarray":["0","200","400","600"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Number of samples","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,11.6],"tickmode":"array","ticktext":["(-14°S to -13°S)","(-15°S to -14°S)","(-17°S to -16°S)","(-24°S to -23°S)","(-25°S to -24°S)","(-26°S to -25°S)","(-27°S to -26°S)","(-28°S to -27°S)","(-29°S to -28°S)","(-30°S to -29°S)","(-31°S to -30°S)"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11],"categoryorder":"array","categoryarray":["(-14°S to -13°S)","(-15°S to -14°S)","(-17°S to -16°S)","(-24°S to -23°S)","(-25°S to -24°S)","(-26°S to -25°S)","(-27°S to -26°S)","(-28°S to -27°S)","(-29°S to -28°S)","(-30°S to -29°S)","(-31°S to -30°S)"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.955168119551683},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Latitude","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative","xaxis2":{"overlaying":"x","side":"bottom","title":"Number of samples"}},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"16c1e4c663570":{"y":{},"fill":{},"type":"bar"}},"cur_data":"16c1e4c663570","visdat":{"16c1e4c663570":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 
 

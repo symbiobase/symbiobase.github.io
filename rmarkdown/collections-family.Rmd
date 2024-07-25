@@ -21,12 +21,10 @@ The collection by numbers (01/01/2024):
 
 library(tidyverse)
 library(lubridate)
-library(janitor)
 library(ggplot2)
 library(plotly)
 
-collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
-  clean_names() |>
+collections <- read.csv("https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv")  |>
   dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
   mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
   mutate(location = gsub("_", " ", location),

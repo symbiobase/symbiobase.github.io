@@ -22,12 +22,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(lubridate)
-library(janitor)
 library(DT)
+library(RColorBrewer)
 
 
-collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
-  clean_names() |>
+collections <- read.csv("https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv")  |>
   dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
   mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
   mutate(location = gsub("_", " ", location),
@@ -40,6 +39,12 @@ collections <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections
                            gsub("(-?\\d+)", "\\1°S", .)) %>%
   arrange(host_genus)
 
+
+
+# Generate a color palette for host_species
+unique_genera <- unique(collections$host_genus)
+genera_colors <- colorRampPalette(brewer.pal(12, "Set3"))(length(unique_genera))
+names(genera_colors) <- unique_genera
 
 datatable(collections,  
           rownames = FALSE, 
@@ -62,10 +67,17 @@ datatable(collections,
                         columnDefs = list(list(searchPanes = list(show = FALSE), targets = c(1,2,4,5,6)))
                          )
             ) %>%
+  # formatStyle(
+  #   c('Sample ID', 'Collection date', 'Location',  "Site", 'Longitude', 'Latitude', 
+  #     "Host family", "Host genus", "Host species", "Latitudinal Band"),
+  #   fontSize = '90%'
+  # ) %>%
   formatStyle(
-    c('Sample ID', 'Collection date', 'Location',  "Site", 'Longitude', 'Latitude', 
+    columns=c('Sample ID', 'Collection date', 'Location',  "Site", 'Longitude', 'Latitude', 
       "Host family", "Host genus", "Host species", "Latitudinal Band"),
-    fontSize = '90%'
+   valueColumns='Host genus',
+    backgroundColor = styleEqual(names(genera_colors), genera_colors),
+   fontSize = '90%'
   ) %>%
   formatStyle(
     c('Host genus','Host species'),

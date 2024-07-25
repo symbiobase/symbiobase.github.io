@@ -19,7 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-library(janitor)
 library(tidyverse)
 library(magrittr)
 library(sf)
@@ -30,8 +29,7 @@ library(httr)
 
 ```{r, cache=TRUE, warning=FALSE, message=FALSE, fig.width=10, fig.height=8}
 
-collections_sf <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
-  clean_names() |>
+collections_sf <-read.csv("https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv")  |>
   dplyr::select(sample_id, collection_date, location, site, area, subregion, longitude, latitude, host_family, host_genus, host_species) |> 
   mutate(lat=round(latitude,3), lon=round(longitude,3)) |> 
   na.omit(longitude) |> 
@@ -80,8 +78,7 @@ gbr_shape <- st_read(shapefile_path, quiet=TRUE) %>%
 
 
 
-collections_sf <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collections_merged.xlsx") |>
-  clean_names() |>
+collections_sf <- read.csv("https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv") |>
   dplyr::select(sample_id, collection_date, location, site, area, subregion, longitude, latitude, host_family, host_genus, host_species) |> 
   mutate(lat=round(latitude,3), lon=round(longitude,3)) |> 
   na.omit(longitude) |> 
@@ -99,6 +96,7 @@ collections_sf <- readxl::read_excel("/Users/rof011/symbiobase/code/AUS_collecti
   ))
 
 ```
+
 ### Host Genera {.tabset}
  
 #### All Taxa

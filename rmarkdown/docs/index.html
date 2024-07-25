@@ -259,19 +259,39 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="symbioDatabase.html">Collections database</a>
+      <a href="symbioDatabase.html">
+        <span class="fa fa-database"></span>
+         
+        Collections database
+      </a>
     </li>
     <li>
-      <a href="collections-statistics.html">Collection statistics</a>
+      <a href="collections-statistics.html">
+        <span class="fa fa-diagram-project"></span>
+         
+        Collection statistics
+      </a>
     </li>
     <li>
-      <a href="collections-family.html">- visualise by family</a>
+      <a href="collections-family.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by host family
+      </a>
     </li>
     <li>
-      <a href="collections-species.html">- visualise by species</a>
+      <a href="collections-species.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by host species
+      </a>
     </li>
     <li>
-      <a href="collections-latitude.html">- visualise by latitude</a>
+      <a href="collections-latitude.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - collections by latitude
+      </a>
     </li>
   </ul>
 </li>
@@ -282,12 +302,37 @@ $(document).ready(function () {
     SymbioMap
   </a>
 </li>
-<li>
-  <a href="symbioR.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-pie-chart"></span>
      
     SymbioR
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="symbioR.html">
+        <span class="fa fa-chart-simple"></span>
+         
+        - symbioR Introduction
+      </a>
+    </li>
+    <li>
+      <a href="symbioR_workflow.html">
+        <span class="fa fa-chart-line"></span>
+         
+        - symbioR workflow
+      </a>
+    </li>
+    <li>
+      <a href="symbioR_visualise.html">
+        <span class="fa fa-chart-bar"></span>
+         
+        - symbioR_visualise
+      </a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -320,7 +365,7 @@ $(document).ready(function () {
       </a>
     </li>
     <li>
-      <a href="contacts.html">
+      <a href="https://github.com/symbiobase/">
         <span class="fa fa-address-book"></span>
          
         Contact
@@ -360,8 +405,152 @@ $(document).ready(function () {
 </div>
 
 
-<div style="text-align: center;">
-<p><img src="logo/logo_full.png" width="450"/></p>
+<style>
+  h1.title {
+    display: none;
+  }
+  .center-align {
+    text-align: center;
+    white-space: normal;  /* Use normal instead of wrap */
+  }
+</style>
+<div
+id="symbiobase-a-molecular-taxonomic-key-and-database-for-symbiodiniaceae"
+class="section level3">
+<h3>Symbiobase: a molecular-taxonomic key and database for
+Symbiodiniaceae</h3>
+<div class="center-align">
+<p><img src="logo/logo_full.png" width="400"/></p>
+</div>
+<p>Symbiobase represents a taxonomic framework and revision for
+Symbiodiniaceae from the eastern Australian coast. Through ongoing
+updates, Symbiobase will act as a central portal for providing a
+molecular-taxonomic key and database. Symbiobase is formed from a
+collection of &gt;4000 samples, spanning 20 degrees of latitude from the
+tropical northern Great Barrier Reef to the subtropical reefs of
+northern New South Wales, encompassing 12 taxonomic orders of marine
+invertebrates across 52 families, with a core focus on Scleractinia:</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(patchwork)
+
+order &lt;- read.csv(&quot;https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv&quot;) |&gt;
+  dplyr::select(host_order) |&gt; 
+  drop_na(host_order) |&gt; 
+  group_by(host_order) |&gt; 
+  summarise(count=n()) |&gt; 
+  ggplot() + theme_void() +
+  ggtitle(&quot;Order&quot;) + ylab(&quot;&quot;) + xlab(&quot;&quot;) +
+  geom_bar(aes(x=&quot;&quot;, y=count, fill=host_order), linewidth=0.1, color=&quot;black&quot;, stat=&quot;identity&quot;, width=1) +
+  coord_polar(&quot;y&quot;, start=0) +
+  #geom_text(data=data_pie_latitude, aes(x=&quot;&quot;, y=count, label = count), size=6, position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values = colorRampPalette(RColorBrewer::brewer.pal(13, &quot;RdBu&quot;))(13)) +
+  theme(plot.title = element_text(size=6), legend.text = element_text(size=6), legend.key.size = unit(0.5, &quot;cm&quot;), legend.title=element_blank())
+
+family &lt;- read.csv(&quot;https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv&quot;)  |&gt;
+  dplyr::select(host_family) |&gt; 
+  drop_na(host_family) |&gt; 
+  group_by(host_family) |&gt; 
+  summarise(count=n()) |&gt; 
+  ggplot() + theme_void() +
+  ggtitle(&quot;Family&quot;) + ylab(&quot;&quot;) + xlab(&quot;&quot;) +
+  geom_bar(aes(x=&quot;&quot;, y=count, fill=host_family), linewidth=0.1, color=&quot;black&quot;, stat=&quot;identity&quot;, width=1) +
+  coord_polar(&quot;y&quot;, start=0) +
+  scale_fill_manual(values = colorRampPalette(RColorBrewer::brewer.pal(12, &quot;Set1&quot;))(53)) +
+  theme(plot.title = element_text(size=6), legend.text = element_text(size=5), legend.title=element_blank(), legend.key.size = unit(0.5, &quot;cm&quot;) ) +
+  guides(fill = guide_legend(ncol = 4))
+
+
+order + family + plot_annotation(title=&#39;Symbiobase collection of Symbiodiniaceae by host taxonomy&#39;) &amp; 
+  theme(plot.title = element_text(size = 10))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="960" /></p>
+</div>
+<div id="taxonomic-framework-for-symbiodinium" class="section level3">
+<h3>Taxonomic framework for Symbiodinium</h3>
+<p>Symbiobase will provide an open access, streamlined species
+identification key to unify the taxonomy of Symbiodiniaceae via access
+to a curated sample database and associated ITS2 rDNA repeats.</p>
+<p>Our extensive sample collection of high-latitude reefs extends south
+to the worlds southernmost coral reef, Lord Howe Island, and has led to
+the discovery of 17 new Cladocopium genotypes (Sampayo in prep).</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(patchwork)
+
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(stringr)
+library(RColorBrewer)
+
+symbio_pie &lt;- read.csv(&quot;https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv&quot;) |&gt;
+  select(sym_type_1, sym_type_2, sym_type_3) %&gt;%
+  pivot_longer(cols = everything(), names_to = &quot;variable&quot;, values_to = &quot;combined&quot;) %&gt;%
+  mutate(combined = if_else(str_length(combined) &lt;= 6, combined, NA_character_)) %&gt;%
+  filter(!is.na(combined)) |&gt; 
+  filter(!combined %in% c(&quot;rerun&quot;, &quot;mix?&quot;)) |&gt; 
+  group_by(combined) |&gt; 
+  summarise(count=n()) |&gt;
+  ggplot() + theme_void() +
+  ggtitle(&quot;Resolved sequences&quot;) + 
+  ylab(&quot;&quot;) + xlab(&quot;&quot;) +
+  geom_bar(aes(x=&quot;&quot;, y=count, fill=combined), linewidth=0.1, color=&quot;black&quot;, stat=&quot;identity&quot;, width=1) +
+  coord_polar(&quot;y&quot;, start=0) +
+  scale_fill_manual(values = colorRampPalette(RColorBrewer::brewer.pal(12, &quot;Paired&quot;))(79)) +
+  theme(plot.title = element_text(size=4), legend.text = element_text(size=6), legend.key.size = unit(0.35, &quot;cm&quot;), legend.title=element_blank())
+
+
+symbio_chart &lt;- read.csv(&quot;https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv&quot;) %&gt;%
+  select(sym_type_1, sym_type_2, sym_type_3) %&gt;%
+  pivot_longer(cols = everything(), names_to = &quot;variable&quot;, values_to = &quot;combined&quot;) %&gt;%
+  mutate(combined = if_else(str_length(combined) &lt;= 6, combined, NA_character_)) %&gt;%
+  filter(!is.na(combined)) %&gt;%
+  group_by(combined) %&gt;%
+  summarise(count = n()) %&gt;%
+  arrange(desc(count)) %&gt;%
+  slice_head(n = 10) %&gt;%
+  arrange(combined) %&gt;%
+  ggplot() +  theme_bw() +
+  ggtitle(&quot;Top 10 most abundant sequence ID&quot;) + 
+  ylab(&quot; &quot;) +  xlab(&quot;&quot;) + 
+  geom_bar(aes(x = combined, y = count, fill = combined), linewidth = 0.1, show.legend=FALSE,
+           color = &quot;black&quot;, stat = &quot;identity&quot;, width = 1) +
+  scale_fill_manual(values = colorRampPalette(RColorBrewer::brewer.pal(12, &quot;Paired&quot;))(10)) + 
+  theme(
+    plot.title = element_text(size = 4),
+    legend.text = element_text(size = 4),
+    legend.title = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) 
+
+symbio_pie + symbio_chart + plot_annotation(title=&#39;Symbiobase collection of Symbiodiniaceae by sequence ID&#39;) &amp; 
+  theme(plot.title = element_text(size = 11))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+</div>
+<div id="conservation" class="section level3">
+<h3>Conservation</h3>
+<p>As Symbiodiniaceae are critical in the survival of reef building
+corals, there has been much interest into the environmental limits of
+symbionts. Certain genotypes are thermally tolerant and have been
+targeted in conservation models to identify locations with thermally
+tolerant coral populations under future climate conditions. Symbionts
+also represent a potential source of rapid adaptive change as
+rearrangements of partnerships over generations may lead to a
+modification in environmental stress tolerance. The current taxonomic
+uncertainty and lack of information on species distributions undermines
+the accuracy of i) model predictions aiming to understand species
+tolerance limits and ii) estimating the extent of community changes to
+tropical and high latitude coral communities that may act as climate
+refugia. Changes in regional and local symbiont species composition are
+expected to have downstream impacts on their coral hosts, influencing
+their thermal tolerance and thereby the capacity of tropical corals to
+inhabit subtropical refugia and subtropical corals to survive locally as
+oceans warm.</p>
 </div>
 
 

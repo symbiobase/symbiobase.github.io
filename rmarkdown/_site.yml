@@ -8,21 +8,35 @@ navbar:
       icon: fa-layer-group
       menu:
         - text: "Collections database"
+          icon: fa-database
           href: symbioDatabase.html
         - text: "Collection statistics"
+          icon: fa-diagram-project
           href: collections-statistics.html
-        - text: "- visualise by family"
+        - text: "- collections by host family"
+          icon: fa-chart-line
           href: collections-family.html
-        - text: "- visualise by species"
+        - text: "- collections by host species"
+          icon: fa-chart-line
           href: collections-species.html
-        - text: "- visualise by latitude"
+        - text: "- collections by latitude"
+          icon: fa-chart-line
           href: collections-latitude.html
     - text: "SymbioMap"
       icon: fa-globe
       href: symbioMap.html
     - text: "SymbioR"
       icon: fa-pie-chart
-      href: symbioR.html
+      menu:
+        - text: "- symbioR Introduction"
+          icon: fa-chart-simple
+          href: symbioR.html
+        - text: "- symbioR workflow"
+          icon: fa-chart-line
+          href: symbioR_workflow.html
+        - text: "- symbioR_visualise"
+          icon: fa-chart-bar
+          href: symbioR_visualise.html
     - text: "Network"
       icon: fa-sitemap
       menu:
@@ -37,7 +51,7 @@ navbar:
           href: collaborators.html
         - text: "Contact"
           icon: fa-address-book
-          href: contacts.html
+          href: https://github.com/symbiobase/
     - text: "GitHub"
       icon: fa-github
       href: https://github.com/symbiobase/
