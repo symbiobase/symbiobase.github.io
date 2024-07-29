@@ -10,14 +10,14 @@ date: ""
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-symbioR is a toolkit of functions to tidy and visualise ITS2 sequence profiles for Symbiodiniaceae:
-
-![](images/symbioR_viewer-01.png)
+symbioR is a toolkit of functions to tidy and visualise ITS2 sequence profiles for Symbiodiniaceae.
 
 to install:
 
-```{r}
+```{r class.source = 'fold-show', include=TRUE, eval=FALSE}
 
 remotes::install_github("symbiobase/symbioR")
 
 ```
+
+![](images/symbioR_viewer-01.png)

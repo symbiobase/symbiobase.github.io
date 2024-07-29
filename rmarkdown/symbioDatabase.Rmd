@@ -27,17 +27,20 @@ library(RColorBrewer)
 
 
 collections <- read.csv("https://raw.githubusercontent.com/symbiobase/symbioID/main/Symbiobase.csv")  |>
-  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species) |> 
+  dplyr::select(sample_id, collection_date, location, site, longitude, latitude, host_family, host_genus, host_species, sym_type_1) |>
+  rename(symbiont=sym_type_1) |> 
   mutate(latitude=round(latitude,3), longitude=round(longitude,3), collection_date=ymd(collection_date)) |> 
   mutate(location = gsub("_", " ", location),
          site = gsub("_", " ", site),
          host_genus = gsub("_", " ", host_genus),
          host_species = gsub("_", " ", host_species)) |> 
-  mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %>%
-  mutate(latitudinal_band = gsub(",", " to ", latitudinal_band) %>%
-                           gsub("\\]", ")", .) %>%
-                           gsub("(-?\\d+)", "\\1°S", .)) %>%
-  arrange(host_genus)
+  mutate(symbiont = ifelse(is.na(symbiont), "Upon request", symbiont)) |> 
+  filter(!symbiont == "?") |> 
+  # mutate(latitudinal_band = as.character(cut(latitude, breaks = seq(-34, -13, by = 1), include.lowest = TRUE))) %>%
+  # mutate(latitudinal_band = gsub(",", " to ", latitudinal_band) %>%
+  #                          gsub("\\]", ")", .) %>%
+  #                          gsub("(-?\\d+)", "\\1°S", .)) %>%
+  arrange(symbiont)
 
 
 
@@ -51,7 +54,7 @@ datatable(collections,
           colnames = c('Sample ID' = 'sample_id', 'Collection date' = 'collection_date', 'Location' = 'location', 
                        "Site" = "site", 'Longitude' = "longitude", 'Latitude' = 'latitude', 
                        "Host family" = "host_family", "Host genus" = "host_genus", "Host species" = "host_species", 
-                       "Latitudinal Band"= "latitudinal_band"),
+                       "Symbiont"= "symbiont"),
           filter = 'top', 
           extensions = c('Buttons', 'RowGroup', 'Scroller', 'Select', 'SearchPanes'), 
           options = list(pageLength = 20, 
@@ -74,7 +77,7 @@ datatable(collections,
   # ) %>%
   formatStyle(
     columns=c('Sample ID', 'Collection date', 'Location',  "Site", 'Longitude', 'Latitude', 
-      "Host family", "Host genus", "Host species", "Latitudinal Band"),
+      "Host family", "Host genus", "Host species", "Symbiont"),
    valueColumns='Host genus',
     backgroundColor = styleEqual(names(genera_colors), genera_colors),
    fontSize = '90%'

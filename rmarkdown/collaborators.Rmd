@@ -4,12 +4,16 @@ output:
   html_document:
     toc: false
 date: ""
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{=html}
 <style>
   h1.title {
     display: none;
@@ -28,24 +32,125 @@ knitr::opts_chunk$set(echo = TRUE)
     margin: 0 auto;   /* Center the content */
   }
 </style>
+```
+### 
 
-### Project lead, symbioBase curator
-#### - Eugenia Sampayo (PI, symbioBase curator)
+#### - Eugenia Sampayo (symbioBase curator)
 
 <br>
 
-::: {class="right-align"}
+::: right-align
 <img src="images/esampayo.jpg" width="300"/>
 :::
 
-Eugenia is a Research Fellow at the University of Queensland She completed her PhD in 2008 at the University of Queensland, after which she worked in the USA and Japan before returning to the Australia in 2012. Eugenia’s research focuses on the ecology and functional significance of the symbiotic dinoflagellates (Symbiodinium) that associate with many marine invertebrates, including scleractinian corals. She is particularly interested symbioses ecology and evolution, species ranges and flexibility of symbiotic partnerships in the context of climate change. 
+Eugenia is an ABRS-NTGRP
+(<https://www.dcceew.gov.au/science-research/abrs/grants/awarded/2020-21>)
+Research Fellow at the University of Queensland. Over the past 20 years,
+Eugenia has worked on marine invertebrates across the Indo-Pacific Ocean
+and Caribbean basin. Her research focuses on the evolutionary ecology,
+biodiversity and species ranges of Symbiodiniaceae associated with
+marine invertebrates, including scleractinian corals. Eugenia is
+responsible for curating data into SymbioBase.
 
-As an [ABRS NTRGP](https://www.dcceew.gov.au/science-research/abrs/grants), Eugenia is responsible for curation and taxonomic revision to Australian Symbiodiniaceae via Symbiobase. Through the extensive sample collection of high-latitude reefs, this research has led to the discovery of 17 new Cladocopium genotypes (Sampayo in prep).
+[Website](https://environment.uq.edu.au/profile/21680/eugenia-nijgh-de-sampayo-garrido)
+\|
+[Publications](https://scholar.google.com.au/citations?hl=en&user=xhPRwuQAAAAJ%3E)
+\| [Twitter](https://x.com/eugeniasampayo)
 
+<br> <br>
+
+### 
+
+#### - Todd C. LaJeunesse
+
+::: left-align
+<img src="https://ecos-appdev-production.s3.amazonaws.com/science_site/s3fs-public/styles/f_story_image/public/2019-07/t._lajuenesse.jpg?h=49687038&amp;itok=bbBH_00U" width="150"/>
+:::
+
+Todd is the founder of the current taxonomic framework for
+Symbiodiniacaee. He revised the former genus *Symbiodinium* into the
+family Symbiodiniaceae that now contains 11 genera. Todd is based at the
+Pennsylvania State University (U.S.A.) where he leads the "Symbiosis &
+Evolution Lab". He focuses on the evolutionary ecology, biogeography and
+species diversity of marine invertebrate symbioses.
+
+[Symbiosis & Evolution
+lab](https://symbiosisecoevo.weebly.com/people.html) \|
+[Publications](https://scholar.google.com.au/citations?hl=en&user=HsWW4tsAAAAJ%3E)
+\| [Twitter](https://x.com/symbiodiniaceae)
 
 <br>
+
 <br>
 
+#### - Zoe Richards
 
-### Symbiobase collaborators:
+::: left-align
+<img src="https://www.witwa.org.au/wp-content/uploads/2020/09/Zoe-Richards-400x400.jpg" width="150"/>
+:::
 
+Zoe is an expert on Indo-Pacific scleractinian coral taxonomy,
+systematics, population genetics, and conservation biology. She has
+described several coral species and is responsible for over 50,000
+Marine Invertebrates specimens as Curator of Marine Invertebrates at the
+Western Australian Museum. Zoe holds a joint position at Curtin
+University, where she leads the Coral Conservation and Research Group
+within the Trace and Environmental DNA Laboratory. Zoe's work actively
+engages with conservation, informing threatened species policies (IUCN
+Coral Specialist Group) and working alongside marine park rangers and
+managers (e.g. Ningaloo Reef, Kimberley).
+
+[Website](https://staffportal.curtin.edu.au/staff/profile/view/zoe-richards-e072e458/)
+\|
+[Museum](https://museum.wa.gov.au/research/departments/aquatic-zoology/aquatic-zoology-curators-and-contacts/zoe-richards)
+\|
+[Publications](https://scholar.google.com.au/citations?hl=en&user=553I6WEAAAAJ)
+\| [Twitter](https://x.com/ZoeR_Coral)
+
+<br> <br>
+
+#### - Christian Voolstra (University of Konstanz, Germany)
+
+::: left-align
+<img src="https://www.campus.uni-konstanz.de/sites/unikn/files/styles/round/public/field/zitat/Christian%20Voolstra.jpg" width="150"/>
+:::
+
+Christian is a professor at the University of Konstanz (Germany) and
+president of the International Society for Coral Reef Society (ICRS).
+Christian's work integrates genomics approaches to gain an integrated
+understanding of coral ecology and evolution. His work targets adaptive
+capabilities and biotic response to environmental change from organismal
+to ecosystem levels to provide guidance for conservation and sustainable
+use of coral ecosystems.
+
+[Website](https://www.biologie.uni-konstanz.de/voolstra/) \|
+[Publications](https://scholar.google.com.au/citations?hl=en&user=wg421oQAAAAJ)
+\| [Twitter](https://x.com/reefgenomics)
+
+<br> <br>
+
+#### - Lisa Kirkendale (Western Australian Museum, Australia)
+
+::: left-align
+<img src="https://www.witwa.org.au/wp-content/uploads/2020/09/Lisa-Kirkendale-400x400.jpg" width="150"/>
+:::
+
+Lisa is the Head of Aquatic Zoology and Curator of Molluscs at the
+Western Australian Museum. Her work focuses on bivalve taxonomy and
+systematics, with a specific interest in biogeography, evolution and
+adaptation. Lisa serves as an expert for industry and government, and
+has led major biodiversity discovery programs (e.g. "Bush Blitz",
+"Westport Biodiversity Survey", Schmidt Ocean Institute expeditions).
+Her work delivered thousands of data points on mollusc species
+occurrences, many of which represent new records and new species, and
+directly informed marine park management (Gascoyne Marine Park,
+Kimberley Marine Parks). She is excited to increase knowledge of
+molluscan symbioses with Symbiodiniaceae, with are sorely missing from
+current biodiversity estimates (\<0.5% of data).
+
+[Website](https://museum.wa.gov.au/research/departments/aquatic-zoology/aquatic-zoology-curators-and-contacts/lisa-kirkendale%3E)
+\|
+[Publications](https://scholar.google.com.au/citations?hl=en&user=4VKne04AAAAJ%3E)
+\| [Twitter](https://x.com/KirkendaleLisa%3E)
+
+<br> <br>

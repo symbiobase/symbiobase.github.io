@@ -1,7 +1,7 @@
 name: "symbiobase"
 output_dir: "docs"
 navbar:
-  title: "<img id=\"logo\" style=\"width: 140px;\" src=\"images/headerlogo.png\" />     "
+  title: "<img id=\"logo\" style=\"width: 140px;\" src=\"images/headerlogo.png\" />"
   type: default
   left:
     - text: "Collections"
@@ -13,28 +13,34 @@ navbar:
         - text: "Collection statistics"
           icon: fa-diagram-project
           href: collections-statistics.html
-        - text: "- collections by host family"
+        - text: "Collections by host family"
           icon: fa-chart-line
           href: collections-family.html
-        - text: "- collections by host species"
+        - text: "Collections by host species"
           icon: fa-chart-line
           href: collections-species.html
-        - text: "- collections by latitude"
+        - text: "Collections by latitude"
           icon: fa-chart-line
           href: collections-latitude.html
+    - text: "SymbioID"
+      icon: fa-atom
+      menu:
+        - text: "Symbiodiniaceae list"
+          icon: fa-database
+          href: symbioID.html
     - text: "SymbioMap"
       icon: fa-globe
       href: symbioMap.html
     - text: "SymbioR"
       icon: fa-pie-chart
       menu:
-        - text: "- symbioR Introduction"
+        - text: "SymbioR Introduction"
           icon: fa-chart-simple
           href: symbioR.html
-        - text: "- symbioR workflow"
+        - text: "SymbioR workflow"
           icon: fa-chart-line
           href: symbioR_workflow.html
-        - text: "- symbioR_visualise"
+        - text: "SymbioR visualise"
           icon: fa-chart-bar
           href: symbioR_visualise.html
     - text: "Network"
@@ -42,7 +48,6 @@ navbar:
       menu:
         - text: "Collaborators"
           icon: fa-address-book
-
         - text: "Funding"
           icon: fa-hashtag
           href: funding.html

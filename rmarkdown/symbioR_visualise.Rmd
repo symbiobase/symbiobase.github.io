@@ -30,7 +30,7 @@ symbioR includes a shiny app that can better visualise the ITS2 Symbiodinium com
 
 ![](images/symbioR_viewer.png)
 
-```{r, include=TRUE, eval=FALSE}
+```{r class.source = 'fold-show', include=TRUE, eval=FALSE}
 library(tidyverse)
 library(symbioR)
 
@@ -45,7 +45,7 @@ view_sequences(folder_path)
 
 Or call view_sequences() with an empty plot and upload the folder using the folder window:
 
-```{r, include=TRUE, eval=FALSE}
+```{r class.source = 'fold-show', include=TRUE, eval=FALSE}
 library(tidyverse)
 library(symbioR)
 

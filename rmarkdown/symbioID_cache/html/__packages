@@ -1,0 +1,15 @@
+dplyr
+tidyr
+ggplot2
+stringr
+RColorBrewer
+tidyverse
+tibble
+readr
+purrr
+forcats
+lubridate
+plotly
+patchwork
+rmarkdown
+DT

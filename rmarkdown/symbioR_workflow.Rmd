@@ -1,7 +1,8 @@
 ---
 title: "symbioR workflow for symportal output"
-output: 
+output:
   html_document:
+    code_folding: hide
     toc: true
 date: ""
 ---
@@ -10,7 +11,7 @@ Example workflow with Symportal output.
 
 Set folder path and seed:
 
-```{r}
+```{r class.source = 'fold-show', message=FALSE, warning=FALSE}
 
 library(tidyverse)
 library(symbioR)
@@ -27,7 +28,7 @@ folder_path <- ("/Users/rof011/symbiodinium/20230120T102936_esampayo")
 
 see ?extract_seqs for more details. default output is "absolute", can specify with type = "relative" 
 
-```{r}
+```{r  class.source = 'fold-show'}
 sequences <- extract_seqs(folder_path)
 
 head(sequences)
@@ -35,7 +36,7 @@ head(sequences)
 
 Only extract the seq.ID in with matches in the its2.profile
 
-```{r}
+```{r  class.source = 'fold-show'}
 sequences <- extract_seqs(folder_path, onlyprofile=TRUE)
 
 head(sequences)
@@ -43,7 +44,7 @@ head(sequences)
 
 make up some metadata and add it to the file
 
-``` {r}
+``` {r  class.source = 'fold-show'}
 
 meta_sim <- data.frame(sample_name = unique(sequences$sample_name),
                        host_genera = sample(c("Acropora", "Pocillopora", "Stylophora", "Merulina"), length(unique(sequences$sample_name)), replace = TRUE),
@@ -58,7 +59,7 @@ meta_sim <- data.frame(sample_name = unique(sequences$sample_name),
 
 extract sequences with metadata:
 
-```{r}
+```{r  class.source = 'fold-show'}
 sequences <- extract_seqs(folder_path, meta_sim)
 
 head(sequences)
@@ -71,7 +72,7 @@ head(sequences)
 
 ### a) drop samples by sample_name
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path,meta_sim) |>
              filter_seqs(drop_samples=c("AU18_0062","AU18_0063","AU18_0064","AU18_0065"))
@@ -81,7 +82,7 @@ unique(sequences$sample_name)
 
 or if you already have a list:
 
-```{r}
+```{r  class.source = 'fold-show'}
 remove_these_seqs <- c("AU18_0062","AU18_0063","AU18_0064","AU18_0065")
 
 sequences <- extract_seqs(folder_path,meta_sim) |>
@@ -92,7 +93,7 @@ sequences <- extract_seqs(folder_path,meta_sim) |>
 
 ### b) keep samples by sample_name
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path, meta_sim) |>
              filter_seqs(keep_samples=c("AU18_0062","AU18_0063","AU18_0064","AU18_0065"))
@@ -104,7 +105,7 @@ unique(sequences$sample_name)
 ### c) drop samples by seq.ID
 
 Note partial matching doesn't work with seq.ID - e.g. selecting "C3" would remove "C3eq" etc. 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path) |>
              filter_seqs(drop_seqs=c("C3xe","C3xe","C1","C3ih"))
@@ -116,7 +117,7 @@ unique(sequences$seq_ID)
 
 ### d) keep samples by seq.ID
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path) |>
              filter_seqs(keep_seqs=c("C3", "C3xe","C3xe","C1","C3ih"))
@@ -126,7 +127,7 @@ sequences <- extract_seqs(folder_path) |>
 
 ### e) remove seq.ID below a threshold
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path) |>
              filter_seqs(threshold=10000)
@@ -138,7 +139,7 @@ sequences <- extract_seqs(folder_path) |>
 
 select genus/clade to keep:
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path) |>
              filter_seqs(clade="D")
@@ -150,7 +151,7 @@ sequences <- extract_seqs(folder_path) |>
 
 if you include metadata in extract_seqs, you can use any tidyverse filter() action. for example:
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder=folder_path, metadata=meta_sim) %>%
              filter(host_genera=="Pocillopora") %>%
@@ -162,7 +163,7 @@ sequences <- extract_seqs(folder=folder_path, metadata=meta_sim) %>%
 ### combining filters
 
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path) |>
              filter_seqs(drop_samples=c("AU18_0062","AU18_0063","AU18_0064","AU18_0065"),
@@ -173,7 +174,7 @@ sequences <- extract_seqs(folder_path) |>
 
 or:
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 sequences <- extract_seqs(folder_path, type="absolute") |>
              filter_seqs(drop_samples=c("AU18_0062","AU18_0063","AU18_0064","AU18_0065")) |> 
@@ -187,7 +188,7 @@ sequences <- extract_seqs(folder_path, type="absolute") |>
 
 explore which samples are dropped:
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 all_samples <- extract_seqs(folder_path) 
 subset_samples <- extract_seqs(folder_path) |> 
@@ -202,7 +203,7 @@ compare_seqs(all_samples, subset_samples)
 
 explore which seqs are filtered:
 
-```{r}
+```{r  class.source = 'fold-show'}
 
 all_seqs <- extract_seqs(folder_path) 
 subset_seqs <- extract_seqs(folder_path, type="absolute") |> 
@@ -218,7 +219,7 @@ Note: extract_seqs() can extract data either absolute abundance or relative abun
 If you pass relative abundance data from extract_seqs() and try to filter by threshold tidyseqs will fail the following error message:
 
 
-```{r, warning=FALSE, message=FALSE}
+```{r  class.source = 'fold-show', warning=FALSE, message=FALSE}
 
 # extract_seqs(folder_path, type="relative") |> 
 #   filter_seqs(threshold=5, type="absolute")
@@ -232,7 +233,7 @@ If you pass relative abundance data from extract_seqs() and try to filter by thr
 
 Plot the raw data (note - this has to be in a pipe as plot_seqs needs the folder from extract_seqs to get the colors)
 
-```{r, fig.width=10, fig.height=3}
+```{r  class.source = 'fold-show', fig.width=10, fig.height=3}
 
 
 plot_data <- extract_seqs(folder=folder_path, type="relative") %>% 
@@ -247,7 +248,7 @@ plot_data
 
 Add filter_seqs before the plot to select what to view:
 
-```{r, fig.width=5, height=3}
+```{r  class.source = 'fold-show', fig.width=5, height=3}
 
 
 plot_data <- extract_seqs(folder_path) %>%
@@ -264,7 +265,7 @@ plot_data
 
 cluster samples by either "bray-curtis", "euclidean", "jaccard", "hellinger", save using ggsave
 
-```{r, fig.width=6, fig.height=3}
+```{r  class.source = 'fold-show', fig.width=6, fig.height=3}
 
 
 plot_data <- extract_seqs(folder_path, meta_sim) |>
@@ -281,7 +282,7 @@ plot_data
 
 Add facet_wrap or facet_grid by using standard ggplot code:
 
-```{r, fig.width=10, fig.height=8}
+```{r  class.source = 'fold-show', fig.width=10, fig.height=8}
 
 
 plot_data <- extract_seqs(folder_path, meta_sim) |>
@@ -297,7 +298,7 @@ plot_data
 
 plot with plotly instead of ggplot for dynamic plots:
 
-```{r,  fig.width=10, fig.height=8}
+```{r  class.source = 'fold-show',  fig.width=10, fig.height=8}
 
 plot_data <- extract_seqs(folder_path, meta_sim) |>
              filter_seqs(threshold = 2000) |> 
@@ -314,7 +315,7 @@ plot_data
 
 To avoid wide plots, split large datasets using nrow:
 
-```{r, fig.height=16, fig.width=8}
+```{r  class.source = 'fold-show', fig.height=16, fig.width=8}
   
 plot_data <- extract_seqs(folder_path, meta_sim) %>%
              filter_seqs(threshold = 2000) %>%
