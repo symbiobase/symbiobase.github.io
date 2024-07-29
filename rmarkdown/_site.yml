@@ -48,6 +48,7 @@ navbar:
       menu:
         - text: "Collaborators"
           icon: fa-address-book
+          href: collaborators.html
         - text: "Funding"
           icon: fa-hashtag
           href: funding.html
